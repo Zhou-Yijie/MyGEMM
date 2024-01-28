@@ -15,10 +15,10 @@ int main(){
     for (int i = 0; i < K * N; i++)B[i] = 1;
 
 
-    __m256i A_m256 = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(A));
-    __m256i B_m256 = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(B));
-    __m256 A_m256 = _mm256_cvtepi32_ps(A_m256);
-    __m256 B_m256 = _mm256_cvtepi32_ps(B_m256);
+    __m256i A_m256i = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(A));
+    __m256i B_m256i = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(B));
+    __m256 A_m256 = _mm256_cvtepi32_ps(A_m256i);
+    __m256 B_m256 = _mm256_cvtepi32_ps(B_m256i);
 
     auto start = std::chrono::high_resolution_clock::now();
     for (int j = 0; j < N; j++){
