@@ -11,8 +11,8 @@ int main(){
     B   = (int*)malloc( sizeof(int) * K * N );
     C   = (int*)malloc( sizeof(int) * M * N );
 
-    for (int i = 0; i < M * K; i++)A[i] = 1;
-    for (int i = 0; i < K * N; i++)B[i] = 1;
+    for (int i = 0; i < M * K; i++)A[i] = i;
+    for (int i = 0; i < K * N; i++)B[i] = i;
 
 
     __m256i A_m256i = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(A));
@@ -23,6 +23,7 @@ int main(){
     auto start = std::chrono::high_resolution_clock::now();
     for (int j = 0; j < N; j++){
         for (int i = 0; i < M; i++){
+            __m256 A_i = A_m256
             __m256 result = _mm256_dp_ps(A_m256, B_m256, 0xFF);
             float sum = _mm256_cvtss_f32(result);
             C[i * N + j] = int(sum);
